@@ -1,0 +1,13 @@
+## Interface: 40300
+## Title: |cff1784d1ElvUI|r CB Skin
+## Notes: Editless ChocolateBar Skin For ElvUI/Tukui
+## Author: Camealion
+## Version: 1.00
+## Dependencies: ChocolateBar
+## OptionalDeps: Tukui, ElvUI
+
+
+ElvUI_CB_Skin.lua
+
+
+!Functions
