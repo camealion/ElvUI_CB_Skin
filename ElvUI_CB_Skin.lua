@@ -10,15 +10,17 @@
 		if f then
 			f:StripTextures(true)
 			f:SetTemplate("Default")
-			f:CreateShadow("Default")
+			ChocolateBar1:CreateShadow("Default")
 			ChocolateBar2:SetFrameStrata("FULLSCREEN")-- Sets them above cbBar 1.
 			ChocolateBar2:SetWidth(126.92)
 			ChocolateBar2:SetHeight(23)
 			ChocolateBar2:SetPoint("TOP", ElvUIParent, "TOP", -225, -32.5)
+			ChocolateBar2:CreateShadow("Default")			
 			ChocolateBar3:SetFrameStrata("FULLSCREEN")	
 			ChocolateBar3:SetWidth(126.92)
 			ChocolateBar3:SetHeight(23)	
 			ChocolateBar3:SetPoint("TOP", ElvUIParent, "TOP", 225, -32.5)
+			ChocolateBar3:CreateShadow("Default")			
 			if ElvUI then UpperRepExpBarHolder:SetPoint("TOP", ChocolateBar1, "BOTTOM", 0, 0) end
 			if ElvUI then WorldStateAlwaysUpFrame:SetPoint("TOP", MMHolder, "BOTTOM", 0, 0) end
 			if ElvUI then ShowButton:SetPoint("TOP", ChocolateBar1, "BOTTOM", -400, 0) end
@@ -27,18 +29,18 @@
 		if ElvUI then
 			if ChocolateBar4 then
 				ChocolateBar4:StripTextures(true)
-				ChocolateBar4:SetWidth(88.5)
+				ChocolateBar4:SetWidth(205)
 				ChocolateBar4:SetHeight(22)	
 				ChocolateBar4:ClearAllPoints()
-				ChocolateBar4:SetPoint("LEFT", LeftMiniPanel, "LEFT", 0, 0)
+				ChocolateBar4:SetPoint("RIGHT", RightChatTab, "RIGHT", 0, 0)
 			end
 		else
 			if ChocolateBar4 then
 				ChocolateBar4:StripTextures(true)
-				ChocolateBar4:SetWidth(71)
-				ChocolateBar4:SetHeight(19)	
+				ChocolateBar4:SetWidth(335)
+				ChocolateBar4:SetHeight(23)	
 				ChocolateBar4:ClearAllPoints()
-				ChocolateBar4:SetPoint("LEFT", TukuiMinimapStatsLeft, "LEFT", 0, 0)
+				ChocolateBar4:SetPoint("RIGHT", TukuiTabsRightBackground, "RIGHT", 0, 0)
 			end
 		end
 		
