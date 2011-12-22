@@ -10,6 +10,7 @@
 		if f then
 			f:StripTextures(true)
 			f:SetTemplate("Default")
+			f:CreateShadow("Default")
 			ChocolateBar2:SetFrameStrata("FULLSCREEN")-- Sets them above cbBar 1.
 			ChocolateBar2:SetWidth(126.92)
 			ChocolateBar2:SetHeight(23)
