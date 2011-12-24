@@ -14,12 +14,12 @@
 			ChocolateBar2:SetFrameStrata("FULLSCREEN")-- Sets them above cbBar 1.
 			ChocolateBar2:SetWidth(126.92)
 			ChocolateBar2:SetHeight(23)
-			ChocolateBar2:SetPoint("TOP", ElvUIParent, "TOP", -225, -32.5)
+			ChocolateBar2:SetPoint("TOP", ElvUIParent, "TOP", -300, -32.5)
 			ChocolateBar2:CreateShadow("Default")			
 			ChocolateBar3:SetFrameStrata("FULLSCREEN")	
 			ChocolateBar3:SetWidth(126.92)
 			ChocolateBar3:SetHeight(23)	
-			ChocolateBar3:SetPoint("TOP", ElvUIParent, "TOP", 225, -32.5)
+			ChocolateBar3:SetPoint("TOP", ElvUIParent, "TOP", 300, -32.5)
 			ChocolateBar3:CreateShadow("Default")			
 			if ElvUI then UpperRepExpBarHolder:SetPoint("TOP", ChocolateBar1, "BOTTOM", 0, 0) end
 			if ElvUI then WorldStateAlwaysUpFrame:SetPoint("TOP", MMHolder, "BOTTOM", 0, 0) end
