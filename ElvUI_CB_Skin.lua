@@ -1,12 +1,10 @@
-﻿local function UpdateRepExpBar(self, event, ...) 
-	if ElvUI then 
-	x = ElvUIParent:GetWidth()/4
-		WhoIsYourDaddy = UpperRepExpBarHolder:GetParent()
-		if WhoIsYourDaddy == ElvUIParent then		
-				UpperRepExpBarHolder:SetPoint("TOP", ChocolateBar1, "BOTTOM", 0, 0)
-				ShowButton:SetPoint("TOP", ChocolateBar1, "BOTTOM", -x, 0)				
-		end 
-	end
+﻿local function UpdateRepExpBar(self, event, ...)
+		if ElvUI then 
+			WhoIsYourDaddy = UpperRepExpBarHolder:GetParent()
+			if WhoIsYourDaddy == ElvUIParent then		
+					UpperRepExpBarHolder:SetPoint("TOP", ChocolateBar1, "BOTTOM", 0, 0)
+			end 
+		end
 end
 
 local SkinCB = CreateFrame("Frame")
@@ -27,7 +25,12 @@ local SkinCB = CreateFrame("Frame")
 	-- Move EXP/Rep bar if ElvUI.
 		local BarOne = _G["ChocolateBar1"]
 		BarOne:SetScript("OnUpdate", UpdateRepExpBar)
-			
+		
+	-- Move Show button if ElvUI
+		if ElvUI then
+			x = ElvUIParent:GetWidth()/4			
+			ShowButton:SetPoint("TOP", ChocolateBar1, "BOTTOM", -x, 0)	
+		end	
 -- Options	Window
 		local CB_Skin_OptionsFrame = CreateFrame("FRAME", "CB_Skin_OptionsFrame", UIParent)
 		CB_Skin_OptionsFrame:SetMovable(true)
@@ -240,6 +243,8 @@ end
 				slider2:SetValue(Bar2and3Position)
 			end
 	end)
+	
+
 	
 	-- Slash Commands		
 	SLASH_CBSKIN1, SLASH_CBSKIN2 = '/cbskin', '/cbskin show'
