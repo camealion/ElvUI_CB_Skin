@@ -21,11 +21,11 @@ local SkinCB = CreateFrame("Frame")
 				f:SetTemplate("Default")
 			end
 		end
-	
+
 	-- Move EXP/Rep bar if ElvUI.
 		local BarOne = _G["ChocolateBar1"]
 		BarOne:SetScript("OnUpdate", UpdateRepExpBar)
-		
+
 -- Options	Window
 		local CB_Skin_OptionsFrame = CreateFrame("FRAME", "CB_Skin_OptionsFrame", UIParent)
 		CB_Skin_OptionsFrame:SetMovable(true)
@@ -35,7 +35,7 @@ local SkinCB = CreateFrame("Frame")
 		CB_Skin_OptionsFrame:SetScript("OnDragStop", CB_Skin_OptionsFrame.StopMovingOrSizing)
 		CB_Skin_OptionsFrame:SetWidth(300)
 		if IsAddOnLoaded("ElvUI") then --Only need with ElvUI
-			CB_Skin_OptionsFrame:SetHeight(350)
+			CB_Skin_OptionsFrame:SetHeight(310)
 		else
 			CB_Skin_OptionsFrame:SetHeight(250)		
 		end
@@ -142,7 +142,6 @@ local SkinCB = CreateFrame("Frame")
 				end
 			end)
 
-
 local AceGUI = LibStub("AceGUI-3.0")		
 -- Set width of bars
 		local slider = AceGUI:Create("Slider")
@@ -159,14 +158,13 @@ local AceGUI = LibStub("AceGUI-3.0")
 		slider2:SetSliderValues(10,500,1)
 		slider2:SetCallback("OnValueChanged", function(self, value) Bar2and3Position = self.value end)
 -- Set position of Raid Control (ShowButton) only for ElvUI
-if ShowButton then 
 		local slider3 = AceGUI:Create("Slider")
 		slider3.frame:SetParent("CB_Skin_OptionsFrame")
 		slider3:SetPoint("TOPLEFT", cbskin_zoom, "BOTTOMLEFT", 0, -130)
 		slider3:SetLabel("Set Location of Raid Control Button")
-		slider3:SetSliderValues(ceil(RaidUtilityPanel:GetWidth()/4)-1,ceil(UIParent:GetWidth())-1-ceil(RaidUtilityPanel:GetWidth()/1.25)-1,1)
+		if RaidUtilityPanel then slider3:SetSliderValues(ceil(RaidUtilityPanel:GetWidth()/4)-1,ceil(UIParent:GetWidth())-1-ceil(RaidUtilityPanel:GetWidth()/1.25)-1,1) end
 		slider3:SetCallback("OnValueChanged", function(self, value) ShowButtonPosition = self.value end)
-end
+		if Tukui then slider3.frame:Hide() end
 
 	if EnableSpecialBars == true then
 		if ChocolateBar2 and ChocolateBar3 then -- Do they really exist!
@@ -253,7 +251,7 @@ end
 	end)
 	
 	-- Move Show button if ElvUI
-		if ElvUI then
+		if IsAddOnLoaded("ElvUI") then
 			if ShowButtonPosition == nil then
 				x = ElvUIParent:GetWidth()/4			
 				ShowButton:SetPoint("TOP", ChocolateBar1, "BOTTOM", -x, 0)
