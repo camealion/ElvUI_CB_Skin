@@ -26,11 +26,6 @@ local SkinCB = CreateFrame("Frame")
 		local BarOne = _G["ChocolateBar1"]
 		BarOne:SetScript("OnUpdate", UpdateRepExpBar)
 		
-	-- Move Show button if ElvUI
-		if ElvUI then
-			x = ElvUIParent:GetWidth()/4			
-			ShowButton:SetPoint("TOP", ChocolateBar1, "BOTTOM", -x, 0)	
-		end	
 -- Options	Window
 		local CB_Skin_OptionsFrame = CreateFrame("FRAME", "CB_Skin_OptionsFrame", UIParent)
 		CB_Skin_OptionsFrame:SetMovable(true)
@@ -39,7 +34,11 @@ local SkinCB = CreateFrame("Frame")
 		CB_Skin_OptionsFrame:SetScript("OnDragStart", CB_Skin_OptionsFrame.StartMoving)
 		CB_Skin_OptionsFrame:SetScript("OnDragStop", CB_Skin_OptionsFrame.StopMovingOrSizing)
 		CB_Skin_OptionsFrame:SetWidth(300)
-		CB_Skin_OptionsFrame:SetHeight(250)
+		if IsAddOnLoaded("ElvUI") then --Only need with ElvUI
+			CB_Skin_OptionsFrame:SetHeight(350)
+		else
+			CB_Skin_OptionsFrame:SetHeight(250)		
+		end
 		CB_Skin_OptionsFrame:SetPoint("CENTER", UIParent, "CENTER")
 		CB_Skin_OptionsFrame:SetTemplate('Transparent')
 		CB_Skin_OptionsFrame:Hide()
@@ -159,10 +158,19 @@ local AceGUI = LibStub("AceGUI-3.0")
 		slider2:SetLabel("Set Position of Bar 2 and 3. from center")
 		slider2:SetSliderValues(10,500,1)
 		slider2:SetCallback("OnValueChanged", function(self, value) Bar2and3Position = self.value end)
+-- Set position of Raid Control (ShowButton) only for ElvUI
+if ShowButton then 
+		local slider3 = AceGUI:Create("Slider")
+		slider3.frame:SetParent("CB_Skin_OptionsFrame")
+		slider3:SetPoint("TOPLEFT", cbskin_zoom, "BOTTOMLEFT", 0, -130)
+		slider3:SetLabel("Set Location of Raid Control Button")
+		slider3:SetSliderValues(ceil(RaidUtilityPanel:GetWidth()/4)-1,ceil(UIParent:GetWidth())-1-ceil(RaidUtilityPanel:GetWidth()/1.25)-1,1)
+		slider3:SetCallback("OnValueChanged", function(self, value) ShowButtonPosition = self.value end)
+end
 
 	if EnableSpecialBars == true then
 		if ChocolateBar2 and ChocolateBar3 then -- Do they really exist!
-		
+
 		if Bar2and3Position == nil then
 			x = WorldFrame:GetWidth()/5 
 		else
@@ -193,14 +201,14 @@ local AceGUI = LibStub("AceGUI-3.0")
 				ChocolateBar3:CreateShadow("Default")			
 
 	local x = ChocolateBar2:GetWidth()/4
-		
+
 		cbBar2Left = CreateFrame('Frame', nil, ChocolateBar2)
 		cbBar2Left:Point('BOTTOM', ChocolateBar2, 'TOP',-x,0)
 		cbBar2Left:Width(2)
 		cbBar2Left:Height(ChocolateBar2:GetHeight()/2)
 		cbBar2Left:SetTemplate('Default')
 		cbBar2Left:SetFrameLevel(ChocolateBar2:GetFrameLevel())
-		
+
 		cbBar2Right = CreateFrame('Frame', nil, ChocolateBar2)
 		cbBar2Right:Point('BOTTOM', ChocolateBar2, 'TOP', x,0)
 		cbBar2Right:Width(2)
@@ -214,7 +222,7 @@ local AceGUI = LibStub("AceGUI-3.0")
 		cbBar3Left:Height(ChocolateBar3:GetHeight()/2)
 		cbBar3Left:SetTemplate('Default')
 		cbBar3Left:SetFrameLevel(ChocolateBar3:GetFrameLevel())
-		
+
 		cbBar3Right = CreateFrame('Frame', nil, ChocolateBar3)
 		cbBar3Right:Point('BOTTOM', ChocolateBar3, 'TOP', x,0)
 		cbBar3Right:Width(2)
@@ -223,7 +231,7 @@ local AceGUI = LibStub("AceGUI-3.0")
 		cbBar3Right:SetFrameLevel(ChocolateBar3:GetFrameLevel())
 	end
 end
-	
+
 	local cbskin = CreateFrame("Frame", "cbskin", CB_Skin_OptionsFrame)
 		cbskin:SetScript("OnUpdate", function()
 			if ChocolateBar2 and ChocolateBar3 then -- Do they really exist!
@@ -244,7 +252,18 @@ end
 			end
 	end)
 	
-
+	-- Move Show button if ElvUI
+		if ElvUI then
+			if ShowButtonPosition == nil then
+				x = ElvUIParent:GetWidth()/4			
+				ShowButton:SetPoint("TOP", ChocolateBar1, "BOTTOM", -x, 0)
+				slider3:SetValue(x)			
+			else
+				slider3:SetValue(ShowButtonPosition)
+				ShowButton:SetPoint("TOPLEFT", ChocolateBar1, "BOTTOMLEFT", ShowButtonPosition, 0)
+			end
+		end	
+	--ShowButton:Show() -- Test if not in a group!
 	
 	-- Slash Commands		
 	SLASH_CBSKIN1, SLASH_CBSKIN2 = '/cbskin', '/cbskin show'
