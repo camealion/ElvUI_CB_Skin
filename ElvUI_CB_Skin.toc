@@ -2,7 +2,7 @@
 ## Title: |cff1784d1ElvUI|r ChocolateBar Skin
 ## Notes: Editless ChocolateBar Skin For ElvUI/Tukui
 ## Author: Camealion
-## Version: 1.2
+## Version: 1.2a
 ## Dependencies: ChocolateBar
 ## OptionalDeps: Tukui, ElvUI, Ace3
 ## SavedVariables: EnableSpecialBars, Bar2and3Width, Bar2and3Position, ShowButtonPosition
