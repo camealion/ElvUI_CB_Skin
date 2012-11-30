@@ -18,13 +18,13 @@ local SkinCB = CreateFrame("Frame")
 		local f = _G["ChocolateBar"..i]
 			if f then
 				f:StripTextures(true)
-				f:SetTemplate("Default")
+				f:SetTemplate("Transparent")
 			end
 		end
 
 	-- Move EXP/Rep bar if ElvUI.
 		local BarOne = _G["ChocolateBar1"]
-		BarOne:SetScript("OnUpdate", UpdateRepExpBar)
+		--BarOne:SetScript("OnUpdate", UpdateRepExpBar)
 
 -- Options	Window
 		local CB_Skin_OptionsFrame = CreateFrame("FRAME", "CB_Skin_OptionsFrame", UIParent)
@@ -175,7 +175,7 @@ local AceGUI = LibStub("AceGUI-3.0")
 			x = Bar2and3Position
 		end
 		--print("x is ",x)
-		local y = ChocolateBar1:GetHeight() + ChocolateBar2:GetHeight()/2 + 1
+		local y = ChocolateBar1:GetHeight() + ChocolateBar2:GetHeight()/2-- + 1
 
 				ChocolateBar2:SetFrameStrata("FULLSCREEN")-- Sets them above cbBar 1.
 				if Bar2and3Width == nil then 
@@ -186,7 +186,7 @@ local AceGUI = LibStub("AceGUI-3.0")
 				ChocolateBar2:SetHeight(23)
 				ChocolateBar2:ClearAllPoints()
 				ChocolateBar2:SetPoint("TOPRIGHT", WorldFrame, "TOP", -x, -y)
-				ChocolateBar2:CreateShadow("Default")			
+				--ChocolateBar2:CreateShadow("Default")			
 				ChocolateBar3:SetFrameStrata("FULLSCREEN")	
 				if Bar2and3Width == nil then 
 					ChocolateBar3:SetWidth(125)
@@ -196,7 +196,7 @@ local AceGUI = LibStub("AceGUI-3.0")
 				ChocolateBar3:SetHeight(23)
 				ChocolateBar3:ClearAllPoints()
 				ChocolateBar3:SetPoint("TOPLEFT", WorldFrame, "TOP", x, -y)
-				ChocolateBar3:CreateShadow("Default")			
+				--ChocolateBar3:CreateShadow("Default")			
 
 	local x = ChocolateBar2:GetWidth()/4
 
@@ -250,18 +250,20 @@ end
 			end
 	end)
 	
+	--RaidUtility_ShowButton:Show() -- Test if not in a group!
+	
 	-- Move Show button if ElvUI
 		if IsAddOnLoaded("ElvUI") then
 			if ShowButtonPosition == nil then
 				x = ElvUIParent:GetWidth()/4			
-				ShowButton:SetPoint("TOP", ChocolateBar1, "BOTTOM", -x, 0)
+				RaidUtility_ShowButton:SetPoint("TOP", ChocolateBar1, "BOTTOM", -x, 0)
 				slider3:SetValue(x)			
 			else
 				slider3:SetValue(ShowButtonPosition)
-				ShowButton:SetPoint("TOPLEFT", ChocolateBar1, "BOTTOMLEFT", ShowButtonPosition, 0)
+				RaidUtility_ShowButton:SetPoint("TOPLEFT", ChocolateBar1, "BOTTOMLEFT", ShowButtonPosition, 0)
 			end
 		end	
-	--ShowButton:Show() -- Test if not in a group!
+
 	
 	-- Slash Commands		
 	SLASH_CBSKIN1, SLASH_CBSKIN2 = '/cbskin', '/cbskin show'
