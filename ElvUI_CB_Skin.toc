@@ -1,14 +1,11 @@
 ## Interface: 50100
 ## Title: |cff1784d1ElvUI|r ChocolateBar Skin
-## Notes: Editless ChocolateBar Skin For ElvUI/Tukui
+## Notes: Editless ChocolateBar Skin For ElvUI
 ## Author: Camealion
-## Version: 5.1
+## Version: 5.1.1
 ## Dependencies: ChocolateBar
-## OptionalDeps: Tukui, ElvUI, Ace3
-## SavedVariables: EnableSpecialBars, Bar2and3Width, Bar2and3Position, ShowButtonPosition
-## X-Embeds: Ace3
-
-embeds.xml
+## OptionalDeps: ElvUI, Ace3
+## SavedVariables: BarsEnable, BarsWidth, BarsHeight, BarsPositionX, BarsPositionY, RaidUtilityEnable, RaidUtilityPosition
 
 ElvUI_CB_Skin.lua
-!Functions.lua
+ELVUI_CB_Skin_Options.lua
