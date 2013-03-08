@@ -9,7 +9,12 @@ local AddonName, Addon = ...
 -- Load AceStuff
 local CBSkin = LibStub("AceAddon-3.0"):NewAddon(AddonName, "AceConsole-3.0")
 
-E.PopupDialogs["Bar_Check"] = {
+local CBSkinOption = CreateFrame("Frame")
+	CBSkinOption:RegisterEvent("ADDON_LOADED")
+	CBSkinOption:SetScript("OnEvent", function(self, event, addon)
+	if not IsAddOnLoaded("ElvUI_Config") then return end
+	
+	E.PopupDialogs["Bar_Check"] = {
 	text = "You need to create ChocolateBar's 2 and 3 before enabling this option. Would you like me to do this for you?",
 	button1 = ACCEPT,
 	button2 = CANCEL,
@@ -253,3 +258,4 @@ function CBSkin:OpenGUICommand(input)
     end
     ACD[mode](ACD, AddonName)
 end
+end)
